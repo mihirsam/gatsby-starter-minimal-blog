@@ -5,6 +5,11 @@ import JobList from "./Jobs/JobList.js";
 import ProList from "./Projects/ProList.js";
 import pArrow from "./Projects/p_arrow.png";
 import "./Projects/customa.css";
+import ContactList from "./Contact/ContactList.jsx";
+import replaceSlashes from "./Utils/replaceSlashes";
+import { Link } from "gatsby";
+import { jsx, Link as TLink } from "theme-ui";
+import SkillLists from "./Skills/SkillLists.jsx";
 
 ## <HeroTextLoop />
 
@@ -99,7 +104,7 @@ import "./Projects/customa.css";
     </span>
 </div>
 
--   Contributed in core features across the entire stack of DLT integrated back-office solution, <a href="http://www.nrifintech.com/solution-for-broker-dealers.html" target="_blank">I-STAR/GV</a>
+-   Contributed in core features across the entire stack of DLT integrated back-office solution, <a href="http://www.nrifintech.com/solution-for-broker-dealers.html" target="_blank" id="customa">I-STAR/GV</a>
 -   Developed **Trade and Settlement** features, aligned with ASX's CHESS replacement program
 -   Written modern, performant, and robust code to enchance **Trade Screens** and add **Warning Features**
 -   Developed a clear knowledge of Financial Market and low-level understanding of stock market
@@ -115,12 +120,20 @@ import "./Projects/customa.css";
 <br />
 
 <div id="projects">
-    <Title num="03. " text=" Projects" />
+    <Title num="03. " text=" Projects">
+        <Link to={replaceSlashes(`/projects`)}>Read all posts</Link>
+    </Title>
 
 </div>
 
 <div>
-    <h4>Information Extraction using Convolutional Neural Network</h4>
+    <div>
+    <TLink as={Link} to={`/about`} sx={{ fontSize: [1, 2, 3], color: `text` }}>
+        <h4>Information Extraction using Convolutional Neural Network</h4>
+    </TLink>
+
+</div>
+    
     <span>
         <p style={{ "font-size": "20px" }}>
             Convolutional Neural Networks have in the past years shown
@@ -128,14 +141,7 @@ import "./Projects/customa.css";
             sentence classification, i.e., classifying sentence into a set of
             pre-defined categories and use them to generate a summary. Generated
             summary scores upto 64% on different datasets which almost twice of
-            accepted score of 35%.{" "}
-            <a
-                id="customa"
-                style={{ "font-size": "20px" }}
-                href="http://www.nrifintech.com/solution-for-broker-dealers.html"
-            >
-                Read more
-            </a>
+            accepted score of 35%.
         </p>
     </span>
 </div>
@@ -144,7 +150,13 @@ import "./Projects/customa.css";
 <br />
 
 <div>
-    <h4>Twitter Sentiment Analyzer</h4>
+    <div>
+    <TLink as={Link} to={`/about`} sx={{ fontSize: [1, 2, 3], color: `text` }}>
+        <h4>Twitter Sentiment Analyzer</h4>
+    </TLink>
+
+</div>
+    
     <span>
         <p style={{ "font-size": "20px" }}>
             In this project, I have trained a Naive Bayes classifier to predict
@@ -153,14 +165,7 @@ import "./Projects/customa.css";
             automatically predict customer's sentiment (i.e. whether their
             customers are happy or not) or to detect toxic comments. The process
             could be done automatically without having humans manually review
-            thousands of tweets and customer reviews.{" "}
-            <a
-                id="customa"
-                style={{ "font-size": "20px" }}
-                href="http://www.nrifintech.com/solution-for-broker-dealers.html"
-            >
-                Read more
-            </a>
+            thousands of tweets and customer reviews.
         </p>
     </span>
 </div>
@@ -169,29 +174,59 @@ import "./Projects/customa.css";
 <br />
 
 <div>
-    <h4>Stock Management System</h4>
-    <span>
-        <p style={{ "font-size": "20px" }}>
-            Stock Management System is a software system for tracking inventory
-            levels, orders, sales and deliveries. It can also be used in the
-            manufacturing industry to create a work order, bill of materials and
-            other production related documents. Companies use stock management
-            software to avoid product overstock and outages. It is a tool for
-            organizing inventory data that before was generally stored in
-            hard-copy form or in spreadsheets. Open-source and clean code
-            structure makes it easy to add new modules for anyone.{" "}
-            <a
-                id="customa"
-                style={{ "font-size": "20px" }}
-                href="http://www.nrifintech.com/solution-for-broker-dealers.html"
-            >
-                Read more
-            </a>
-        </p>
-    </span>
+    <TLink as={Link} to={`/about`} sx={{ fontSize: [1, 2, 3], color: `text` }}>
+        <h4>Stock Management System</h4>
+    </TLink>
+
+</div>
+<div>
+    <p style={{ "font-size": "20px" }}>
+        Stock Management System is a software system for tracking inventory
+        levels, orders, sales and deliveries. It can also be used in the
+        manufacturing industry to create a work order, bill of materials and
+        other production related documents. Companies use stock management
+        software to avoid product overstock and outages. It is a tool for
+        organizing inventory data that before was generally stored in
+        hard-copy form or in spreadsheets. Open-source and clean code
+        structure makes it easy to add new modules for anyone.
+    </p>
+    </div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div id="skills">
+    <Title num="04. " text=" Skills and Expertise" />
+
 </div>
 
+<SkillLists />
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 <br />
 <br />
 
-###### <a href="https://www.github.com/mihirsam" id="customa"> View more on GitHub </a>
+<div id="contact">
+    <Title num="05. " text=" Contact" />
+
+</div>
+
+### OK, LET’S CREATE SOMETHING GREAT
+
+<br />
+<br />
+
+<ContactList />

@@ -1,3 +1,22 @@
 #customa {
     color: red;
+    text-decoration: none;
+}
+
+#customa:hover {
+    text-decoration: underline;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
 }

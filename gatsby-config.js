@@ -29,15 +29,19 @@ module.exports = {
                         title: `About`,
                         slug: `/about`,
                     },
+                    {
+                        title: `Projects`,
+                        slug: `/projects`,
+                    },
                 ],
                 externalLinks: [
                     {
-                        name: `Twitter`,
-                        url: `https://twitter.com/lekoarts_de`,
+                        name: `LinkedIn`,
+                        url: `https://www.linkedin.com/in/mihirsam9/`,
                     },
                     {
-                        name: `Instagram`,
-                        url: `https://www.instagram.com/lekoarts.de/`,
+                        name: `GitHub`,
+                        url: `https://github.com/mihirsam`,
                     },
                     {
                         name: `About`,
