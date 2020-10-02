@@ -8,14 +8,16 @@ function SkillLists() {
             </li>
             <p>Python, Java, JavaScript, C</p>
 
-            <h2>{`\u2609`}Tools and Libraries</h2>
-            <p>
-                Git, Jupyter Notebook, TensorFlow, OpenCV, NumPy, Pandas,
-                Matplotlib
-            </p>
+            <li>
+                <h2>Tools and Libraries</h2>
+                <p>
+                    Git, Jupyter Notebook, TensorFlow, OpenCV, NumPy, Pandas,
+                    Matplotlib
+                </p>
+            </li>
 
             <li>
-                <h2>{`\u26EC`}Web Development</h2>
+                <h2>Web Development</h2>
                 <p>
                     HTML, CSS, MongoDB, Express.js, ReactJs, Node.Js, MySQL,
                     Vue.js, Flask
