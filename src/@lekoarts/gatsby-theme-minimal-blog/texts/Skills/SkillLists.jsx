@@ -12,11 +12,11 @@ import Matplotlib from "./../Static/tools/icon_matplotlib.svg";
 import OpenCV from "./../Static/tools/icon_opencv.png";
 import Tableau from "./../Static/tools/icon_tableau.png";
 import HTML from "./../Static/webdev/icon_html.png";
-import CSS from "./../Static/webdev/icon_css.jpg";
-import MongoDB from "./../Static/webdev/icon_mongodb.png";
-import Express from "./../Static/webdev/icon_express.png";
+import CSS from "./../Static/webdev/icon_css.png";
+import MongoDB from "./../Static/webdev/icon_mongodb.jpg";
+import Express from "./../Static/webdev/icon_expressjs.png";
 import ReactJS from "./../Static/webdev/icon_reactjs.png";
-import NodeJS from "./../Static/webdev/icon_nodejs.jpg";
+import NodeJS from "./../Static/webdev/icon_nodejs.png";
 import MySQL from "./../Static/webdev/icon_mysql.png";
 import VueJS from "./../Static/webdev/icon_vuejs.png";
 import Flask from "./../Static/webdev/icon_flask.png";
@@ -109,10 +109,6 @@ function SkillLists() {
             </figure>
             <li>
                 <h2>Web Development</h2>
-                <p>
-                    HTML, CSS, MongoDB, Express.js, ReactJs, Node.Js, MySQL,
-                    Vue.js, Flask
-                </p>
             </li>
             <figure>
                 <img width={80} height={80} src={HTML} alt="skills img" />
@@ -121,51 +117,51 @@ function SkillLists() {
                 </figcaption>
             </figure>
             <figure>
-                <img width={80} height={80} src={CSS} alt="skills img" />
+                <img width={90} height={90} src={CSS} alt="skills img" />
                 <figcaption>
-                    <b>HTML</b>
+                    <b>CSS</b>
                 </figcaption>
             </figure>
             <figure>
-                <img width={80} height={80} src={MongoDB} alt="skills img" />
+                <img width={292} height={77} src={MongoDB} alt="skills img" />
                 <figcaption>
-                    <b>HTML</b>
+                    <b>MongoDB</b>
                 </figcaption>
             </figure>
             <figure>
-                <img width={80} height={80} src={Express} alt="skills img" />
+                <img width={293} height={80} src={Express} alt="skills img" />
                 <figcaption>
-                    <b>HTML</b>
+                    <b>ExpressJS</b>
                 </figcaption>
             </figure>
             <figure>
                 <img width={80} height={80} src={ReactJS} alt="skills img" />
                 <figcaption>
-                    <b>HTML</b>
+                    <b>ReactJS</b>
                 </figcaption>
             </figure>
             <figure>
-                <img width={80} height={80} src={NodeJS} alt="skills img" />
+                <img width={72} height={79} src={NodeJS} alt="skills img" />
                 <figcaption>
-                    <b>HTML</b>
+                    <b>NodeJS</b>
                 </figcaption>
             </figure>
             <figure>
-                <img width={80} height={80} src={MySQL} alt="skills img" />
+                <img width={121} height={80} src={MySQL} alt="skills img" />
                 <figcaption>
-                    <b>HTML</b>
+                    <b>MySQL</b>
                 </figcaption>
             </figure>
             <figure>
                 <img width={80} height={80} src={VueJS} alt="skills img" />
                 <figcaption>
-                    <b>HTML</b>
+                    <b>VueJS</b>
                 </figcaption>
             </figure>
             <figure>
                 <img width={80} height={80} src={Flask} alt="skills img" />
                 <figcaption>
-                    <b>HTML</b>
+                    <b>Flask</b>
                 </figcaption>
             </figure>
             <li>
