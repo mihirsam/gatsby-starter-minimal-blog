@@ -25,7 +25,7 @@ import Eclipse from "./../Static/tools/icon_eclipse.png";
 import { Link } from "gatsby";
 import { Link as TLink } from "theme-ui";
 
-function SkillLists() {
+function SkillListsNew() {
     return (
         <ul>
             <li>
@@ -232,4 +232,4 @@ function SkillLists() {
     );
 }
 
-export default SkillLists;
+export default SkillListsNew;
