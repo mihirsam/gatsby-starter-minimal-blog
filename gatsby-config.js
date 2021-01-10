@@ -7,12 +7,12 @@ const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE;
 module.exports = {
     siteMetadata: {
         siteTitle: `Mihir`,
-        siteTitleAlt: `Minimal Blog - @lekoarts/gatsby-theme-minimal-blog`,
-        siteHeadline: `Minimal Blog - Gatsby Theme from @lekoarts`,
-        siteUrl: `https://minimal-blog.lekoarts.de`,
+        siteTitleAlt: `Mihir - Developer Portfolio`,
+        siteHeadline: `Mihir - Developer Portfolio`,
+        siteUrl: `https://www.mihir.dev`,
         siteDescription: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and line highlighting.`,
         siteLanguage: `en`,
-        siteImage: `/banner.jpg`,
+        siteImage: `/banner.jpg`,   
         author: `@mihirsam`,
     },
     plugins: [

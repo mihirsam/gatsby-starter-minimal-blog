@@ -1,0 +1,520 @@
+---
+title: Information Extraction using Convolutional Neural Network
+slug: "/iecnn"
+---
+
+import FigureOne from "./static/figure1.png";
+import FigureTwo from "./static/figure2.png";
+import FigureThree from "./static/figure3.png";
+import FigureFour from "./static/figure4.png";
+import FigureFive from "./static/figure5.png";
+import FigureSix from "./static/figure6.png";
+import FigureSeven from "./static/figure7.png";
+import FigureEight from "./static/figure8.png";
+import FigureNine from "./static/figure9.png";
+import FigureTen from "./static/figure10.png";
+import FigureEleven from "./static/figure11.png";
+
+<Title num="" text=" TECHNOLOGIES USED" />
+
+-   Python3
+-   Tensorflow
+-   Numpy
+-   Pandas
+-   Matplotlib
+-   Gensim
+-   NLTK
+-   Jupyter Notebook
+
+<br />
+<br />
+
+##### IMPORTANT LINKS: <a href="https://github.com/mihirsam/Information-Extraction-using-CNN" target="_blank" id="customa">GitHub</a>
+
+<br />
+<br />
+<br />
+
+<Title num="" text=" ABSTRACT" />
+
+Text summarization is a technique of briefing a large text document by extracting its significant
+information. Extractive text summarization involves direct extraction of sentences from the
+original document to form a summarized document. The considered task had been an intriguing
+one for a long time and thus many approaches had been proposed for the same. This paper
+proposes information extraction from a large text document using a Convolutional Neural
+Network(CNN).
+
+<br />
+<br />
+<br />
+
+<Title num="01. " text=" INTRODUCTION" />
+
+The amount of information available online today is huge. Moreover, with the spread
+of the internet, it is now easy to share and avail any information. However, with
+this ease of availability of information, the problem of information overloading
+arises. Although data is available in abundance, it is hard to find whether it
+is reliable or not. Also, not everything in a document is required, a considerably
+large document might be filled with redundant data and thus only a portion of
+it contributes to actual information. Therefore, it becomes difficult to obtain
+the required and authentic information. Text summarization is a process by which
+the information content of a large document can be expressed by a comparatively
+smaller one about the significant information that was conveyed by the original
+document. It involves both Information Retrieval and Information Filtering [1].
+Therefore, it can help obtain relevant information as well as time-efficient for
+tasks that involve a large amount of data. Text summarization can be further categorized
+[2] as extractive text summarization and abstractive text summarization. In extractive
+text summarization, the document is summarized directly by selecting and extracting
+relevant sentences and adding it to the generated summary. While, in abstractive
+summarization, the document under consideration is summarized by extracting the
+information semantically, i.e. to scan the document, understand its meaning and
+then the summary is generated according to the semantic knowledge of the document.
+Further, the summarization can be done for a single document or multiple documents.
+Or to say, text summarization can be done for a single document at a time or summarization
+of text can be performed considering multiple documents. The current paper proposes
+an approach of extractive method of text summarization for a single document and
+presents results obtained thereof. The proposed method uses a Convolution Neural
+Network based technique for extractive summarization of single documents. The
+document under consideration is converted to vectors embedding semantically meaningful
+word representations before summarization. The actual summarization uses pre-trained
+classes for processing by the CNN. Comparisons with blind summaries returned by
+human readers using BLEU returned good results. The rest of the paper has been
+organized as follows. The following section presents related work done on text
+summarization with section 3 presenting in brief the various techniques used.
+Section 4 presents the proposed model in detail and section 5 is dedicated to
+the experimentation and results. Finally, section 6 concludes the paper with discussions
+and future scope of work.
+
+<br />
+<br />
+<br />
+
+<Title num="02. " text=" RELATED WORK" />
+
+Text summarization had been under consideration for quite a long time, with one of
+the earliest work done by H.P.Luhn[3] in 1958, which extracts statistical information
+using word frequency and distribution. Luhn approached the problem by marking the
+sentences according to the sum of the frequency of words in a document and then selecting
+and extracting the sentences having the highest score. Since then, various methods
+of ranking the sentences have been proposed, H.P.Edmundson[4] in 1969, proposed a
+similar ranking technique which along with the previously mentioned criteria of term
+frequency, also considered pragmatic phrase, words that appeared in the title as
+well as the location of the sentence in the document. The increasing availability
+of information kept text summarization relevant to researchers, and a lot of variety
+of techniques have been used to approach the problem. LF Rau et al. in 1989[5] approached
+the problem based on linguistic knowledge acquisition and using System for Conceptual
+Information Summarization, Organization, and Retrieval technique for text summarization.
+Todd Johnsan et al. in 2003[6] suggested generating a summary by creating a word
+graph based on similarity and removing the redundancy from the document. Also, Rada
+Mihelcea[7] in 2004 proposed an unsupervised graph-based ranking algorithm for sentence
+extraction from a text document. Another popular work of extraction of sentences
+was proposed by M.A.Fattah et al. in 2012[8] that considered the effect of summary
+features like the position of a sentence in the document, positive-negative keywords,
+similarity and many more. Then the features thus defined, were used with various
+advanced techniques, such as genetic algorithm, mathematical regression to generate
+feature weights, then neural networks and Gaussian Mixture model to perform summarization.
+Another similar but comparatively less complex work was proposed by M Mendoza Et
+al. in 2014[9] where similar sentence features were considered along with using genetic
+algorithms. The approach as the sentence extraction from text document is a binary
+optimization problem as assumed fitness to be dependent on various statistical features
+of the sentence. Text summarization has also been approached using neural networks
+by Aakash Sinha[10] in 2018. Neural networks in combination with other techniques
+are also been used for the problem under consideration, such as the idea of using
+neural networks with rhetorical structure theory was proposed by MK AR[11]. Not only
+combination techniques but also different variations neural networks have been used
+to approach the problem. Ramesh Nallapati et al. in 2017[12] in their work proposed
+using Recurrent Neural Networks to condense the text document. One another variation
+of Artificial Neural Network is Convolutional Neural Network(also popularly known
+as CNN). This paper proposes a model that incorporates CNN to extract information
+from a large text document, such that the extracted information alone can convey
+the significant idea portrayed by the larger text document.
+
+<br />
+<br />
+<br />
+
+<Title num="03. " text=" METHODOLOGIES USED" />
+
+##### 3.1 Word Embeddings
+
+Word embeddings are techniques to map textual information to a vector of continuous numbers.
+Embeddings have been used extensively used to meaningfully represent textual information in
+numerical space. In the current paper, the proposed model uses Doc2vec embedding to vectorize
+the input text before summarization. Proposed by Mikilov et al [13], Doc2Vec is a refinement
+over Word2vec embedding [14][15].
+Word embeddings differ from word encoding in retaining word relationships. While an encoding
+is merely a word representation, embeddings preserve the context and relationships between
+words. Encodings are inefficient due to volume which may be exceedingly high for large
+documents.
+Word2vec is an embedding technique that offers two novel architectures to convert text to word
+vectors, viz., Continuous Bag of Words and Skip-gram model, both working on the concept of the
+local context window. Doc2vec is based on Word2Vec, the difference being that instead of the
+word being embedded, it considers paragraph vectors. Similar to Word2Vec, Doc2vec also offers
+two novel architectures, namely, Distributed Bag of Words version of Paragraph Vector(PVDBOW) which is similar to Skip-gram architecture and Distributed Memory version of Paragraph
+Vector (PV-DM) which is again similar to CBOW model, which is depicted in Figure 1.
+
+<img width={950} height={435} src={FigureOne} alt="Figure One" />
+
+<h6>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIGURE
+    1: Rough demonstration of CBOW Architecture of Word2Vec
+</h6>
+
+However, to generate the said distributed representations of word vectors, Doc2Vec takes as input
+numeric values which are one hot encoded-word representations. So, the input to these
+embedding architectures are implicitly the encoded vectors and for Doc2Vec, an additional
+paragraph id is fed as input to uniquely distinguish the paragraphs.
+
+<br />
+
+##### 3.2 Convolutional Neural Network
+
+Convolutional Neural Network is a variation of Deep Neural Network having convolution layers,
+pooling layers, fully connected layers and many more like dropout layers. The input taken is in
+matrix form, having values that represent the input in its vector form.
+A CNN model can be classified into two parts – Feature Learning and Classification. Feature
+Learning consists of convolutional layers and pooling layers connected. The classification consists
+of a flattening layer, a fully connected layer and a softmax function that finally classifies the input
+having probabilistic values between 0 and 1.
+
+<img width={950} height={435} src={FigureTwo} alt="Figure Two" />
+
+<h6>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIGURE
+    2: Schematic Diagram of Convolution Network
+</h6>
+
+The convolutional layer is the first layer in a CNN model. It takes in two inputs – matrix
+representation of the input vector and a kernel/filter. The convolutional layer performs Feature
+Map between the two inputs which are multiplying the kernel to the input matrix. This helps in
+highlighting the values that are required for classification. The values of the kernel being used are
+chosen depending upon the different types of operations like edge detection, blurring, and
+sharpening. The convolutional layer also uses the ReLU function to bring non-linearity and
+padding when the kernel does not fit properly in the input matrix.
+The pooling layer is used to reduce the number of parameters i.e. it reduces the dimensionality of
+the input matrix by retaining important features. Pooling can be done in various ways like max
+pooling, average pooling, and sum pooling.
+The fully connected layer works in three parts. Firstly, it performs flattening by converting the
+matrix obtained after Feature Learning into a vector which is then fed into a fully connected
+network for creating a model by combining the features. Finally, softmax function is applied which
+classifies the input having probabilistic values between 0 and 1[16].
+
+<br />
+
+##### 3.3 BLEU Score
+
+Bilingual Evaluation Understudy (BLEU)[17] emerged rapidly as a replacement for humans from
+evaluating machine-translated text since the human evaluation was expensive and also consumed
+a lot of time and manpower. BLEU compares a machine translated text with one or more human
+generated reference text and depending upon the similarity produces a score. BLEU checks if the
+words present in machine generated text appears in any of the reference text. The degree of
+similarity in the machine generated text and the reference text results in a score. The score is
+computed by dividing the sum of the maximum number of each word present in the reference text
+to the number of the same word present in the machine generated text, the score generated is
+known as unigram precision. The comparison can also be made on unigrams, bigrams, trigrams,
+4-grams or n-grams, where these are a group of words with unigrams having 1 word, bigrams
+having a group of two words and so on. The count of each word present in the text is positionindependent. The more the similarity in the number of each word present the better the machine
+translated text and also the precision. The final BLEU score is calculated by taking the geometric
+mean of the precision scores and then multiplying the computed mean by an exponential brevity
+penalty factor. The BLEU score computed lies within the range 0 to 1.
+This means of evaluation is very similar to calculate the precision of the machine generated text.
+The score of 1 is attained very seldomly only when the documents are identical. BLEU also
+includes “a multiplicative brevity penalty” which becomes active when the target text is longer
+than the candidate one.
+
+<br />
+<br />
+<br />
+
+<Title num="04. " text=" PROPOSED METHOD" />
+
+The model proposed in the paper had been experimented on three datasets, i.e. three documents
+were tried to be summarized using the proposed model. The documents thus considered had been
+different from one another in terms of its contents. The documents had information related to
+World War II [18], Sourav Ganguly [19] and Sir Aurobindo [20]. The first document had factual
+information about the events that occurred in World War II. The second document had
+information about Sourav Ganguly as a leader, and also his opinions on various events (in first
+person’s speech format). The third document consisted various quotes of Sir Aurobindo and
+Mother India.
+As no standard datasets were used for the task, data had to be pre-processed for further use as it
+had lots of noise. Various citations and other garbage symbols had to be removed, a more
+generalized form of the document was retrieved. Each sentence were then obtained and it was
+made sure no sentence were retrieved having number of words less than one, i.e. empty sentences
+that might appear due to direct retrieval from web pages are filtered. All the documents had to be
+cleaned and normalized for being fed into the model.
+
+<img width={950} height={435} src={FigureThree} alt="Figure Three" />
+
+<h6>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIGURE
+    3: 2D Vectorization of sentences
+</h6>
+
+The documents had been carefully studied and various classes of sentences (information based)
+had been identified for each of the document. After identification of classes, a dataset had been so
+prepared that sentences falling under each class had been separated and kept under the heading of
+identified class. For instance, the document of World War II had sentences having information of
+events like its advancement, it impact in Asia and Europe, mass slaughter, causalities, aftermath
+and so on. Similarly, all the documents were studied carefully and sentences were classified
+manually.
+The paper proposes a model that uses neural network to perform the summarization task. But
+computations cannot be carried out directly over free text, the documents’ numerical
+representations had to be obtained and for the same, a neural model had to designed just to
+provide numerical representation of word. For the said task an embedding scheme had been
+adopted so that not just word vectors could be obtained, but the vectors even preserved semantic
+relations amongst them. The embedding technique used for this model was Doc2vec [21] as
+vectors were not required for each word, but for entire sentence. Each sentence being treated as
+individual documents were embedded and equivalent vector representations were retrieved. As
+the document had sentences ranging from very short sentences to long running sentences, vector
+size was fixed to 100, assuming no important information will be lost nor too much void
+information will be stored. However, as the model proposed in the paper primarily uses CNN for
+summarization, the vectors were resized to its 2D equivalent matrix of size 10x10 as the model
+was seen to perform better with 2D representation as compared to single dimension
+representation.
+The sentence vectors thus obtained are now to be fed into another neural network for training
+purpose. As said, the documents had been refined and various classes of sentences were identified
+based on its information. In accordance to these defined classes the sentence vectors had to be
+trained and for this training purpose, a convolutional neural network(CNN) model is proposed.
+To avoid early shrinking, the model employed a zero padding layer at the beginning of the
+architecture, followed by a convolutional layer and max pooling layer respectively. But the model
+uses three parallel architectures for said padding, convolution and pooling task as the
+classification task is expected to be better achieved with such architecture [22]. The results of
+these parallel architectures had to be concatenated to unite the results. After concatenating the
+results, a flatten layer had been deployed to flatten the outcome of its previous layers removing
+the insignificant entries. Finally, a dense layer, or to say, a fully connected layer was deployed to
+complete the classification task.
+The model uses Rectified Linear Unit (ReLU) as its activation function in the convolution layer.
+The activation function gives same value as input if positive else returns zero. It is said to be one
+of the most used activation function for CNN architectures [23]. But, this activation function has
+a limitation that it cannot be used in output layer. For the output layer, since the network deals
+with multi classification task of sentences, the activation of softmax have been used. The
+activation function so works that it gives probability of each sentence for each class and all these
+probabilities sums to one. To track the loss of the network while training, loss function of sparse
+categorical cross entropy [24] is used. The output of this loss function ranges between 0 and 1,
+and this value is actually in the probability form. As known, loss function is an error reduction
+method of the network. The generated output is actually the difference between predicted
+probability and expected probability for the classification task and thus the correction process
+aims at depleting this difference.
+
+<img width={950} height={700} src={FigureFour} alt="Figure Four" />
+
+<h6>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIGURE
+    4: Rough Demonstration of architecture employed for World War II data
+</h6>
+
+The architecture of CNN used is a sequential one. However, as the documents are of different
+type, the architecture had to undergo some changes in order to obtain better results. For instance,
+since the document of World War II contains simple factual data about the events that occurred
+during the war period, not many changes had to be done for this dataset. The figure below
+roughly demonstrates the architecture of World War II data.
+However, this is not the case with the other datasets. As document containing the data regarding
+Sourav Ganguly had first person’s speech and that having data related to Sir Aurobindo consisted
+series of quotes, it had been comparatively complex to summarize the data as compared to the
+earlier mentioned dataset. Thus for these datasets, an addition pooling layer had to be deployed
+for better results. Figure 5 graphically represents this architecture.
+
+<img width={950} height={700} src={FigureFive} alt="Figure Five" />
+
+<h6>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIGURE
+    5: Rough Demonstration of architecture employed for other data
+</h6>
+
+Using the said architecture, the document is first trained about the sentences falling under
+specified classes. The network is trained, weights adjusted with each iteration, loss decreased and
+accuracy is enhanced. Once the network had been trained, the document is given as input,
+sentences are separated, it is vectorized and then classification is carried out.
+The input document is divided into set of sentences each classified into designed classes. After
+classification is done, the first sentences are picked from each class assuming that the first
+sentence cannot be skipped for summary generation else entire context of the class will be
+ambiguous. The process of selection of sentences is carried on until the summary is so generated
+that the size of summary is 30% of that of the size of original document.
+
+<br />
+<br />
+<br />
+
+<Title num="05. " text=" EXPERIMENT AND RESULTS" />
+
+The evaluation of the machine generated summary is not very deterministic task [25]. The
+correctness of summary may differ from person to person depending upon an individual’s own
+perspective. Yet attempts were made to try evaluating the generated summary (the candidate
+summary) with reference to some human generated summary (the reference summary). Four
+reference summaries were considered for each of the document and evaluation was carried to
+check the efficiency of the build model.
+For evaluation of the machine generated summary, the matrix of BLEU is been used. Usually, the
+BLEU score of less than 15(if scaled out of 100) is said to be bad score while more than 35[26] is
+acceptable. The scores obtained for each dataset against each reference summary is gin in the
+tables below
+
+<img width={950} height={450} src={FigureSix} alt="Figure Six" />
+
+Table 1, presents results that can deduce that reference summary 3 is most similar to that of
+machine generated summary, while reference summary 4 is most distinct. Thus it is difficult to
+say about the correctness of the summary as the same machine generated summary seems to be
+good for one human while not that efficient for the other one.
+
+<img width={950} height={450} src={FigureSeven} alt="Figure Seven" />
+
+Analyzing Table 2, it can be said that if the generated summary is considered in context of
+reference summary 3, it is an appreciable model; but again it is not that good when considered
+with context of reference summary 4. Also, it can be seen that the results for first dataset had been
+quite better than this dataset.
+
+<img width={950} height={450} src={FigureEight} alt="Figure Eight" />
+
+Analysis of data shown in Table 3, in reference to reference summary 1 the model is seen to
+provide best result while the same is not the case for reference summary 3. Again, it is clear that
+the model does not always provide best results for same reference set. That implies, for same
+human, the summary generated by the model may be really appreciable for one document but this
+might not be the case every time.
+The considered for evaluation is BLEU. However, BLEU is usually used for evaluation of
+machine translation. Therefore for better understanding for the performance of the designed
+model, a confusion matrix is created to map the common sentences, it frequency in the candidate
+summary and the reference summary.
+As already mentioned, the summarization task is so carried by the model that it condenses the
+original document to 30% of its size. Thus reference summaries were also so designed that it
+included the sentences from the document and the size ratio was maintained. The documents
+considered for summarization were condensed to be:
+
+-   World War II document – 13 sentences
+-   Sourav Ganguly document – 17 sentences
+-   Sir Aurobindo dataset – 9 quotes
+
+The confusion matrix for common sentences in candidate summary and reference summary thus
+created is shown in the Figures 6, 7 and 8 for document related world war II, Sourav Ganguly and
+Sir Aurobindo respectively.
+
+<img width={950} height={700} src={FigureNine} alt="Figure Nine" />
+
+<h6>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIGURE
+    6: Confusion Matrix for WW-II Dataset
+</h6>
+
+<br />
+<br />
+
+<img width={950} height={700} src={FigureTen} alt="Figure Ten" />
+
+<h6>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIGURE
+    7: Confusion Matrix for Sourav Ganguly Dataset
+</h6>
+
+<br />
+<br />
+
+<img width={950} height={700} src={FigureEleven} alt="Figure Eleven" />
+
+<h6>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIGURE
+    8: Confusion Matrix for Sri Aurobindo Dataset
+</h6>
+
+<br />
+
+But the accuracy of the candidate summary is still not deterministic. Similar to BLEU score there
+is no consistency in the pattern of occurrence of common sentences in the candidate and reference
+summary. Rather, no such consistency can be observed in the reference summaries themselves.
+Hence, the context of evaluation in such task cannot be fixed and therefore it is dependent on an
+individual whether the summary generated is acceptable or not.
+
+<br />
+<br />
+<br />
+
+<Title num="06. " text=" CONCLUSION" />
+
+The model proposed in this paper prepares a summary of text data by using neural network
+architecture, widely using Convolutional Neural Networks. Firstly, the input documented is
+numerically represented using word embedding technique of Doc2Vec. The vectors from said
+architecture is then retrieved and fed into another CNN model where classification task is carried
+on. After classification of sentences in relevant classes designed in accordance of the document,
+sentences are retrieved from each class and the summary is generated which condenses the
+original document to 30% of its actual size. The summary thus generated was then evaluated
+against human generated reference summaries and it had been found that a simple architecture
+can generate appreciable results with acceptable computational complexity. However, using CNN
+makes the model significantly supervised. Thus, for generation of summary using this
+architecture is possible only when the model can be trained well and this training again involves
+proper designing of class and rectification of data. But, once the model is trained well, it is
+expected that it can well summarize any document of that domain.
+
+<br />
+<br />
+<br />
+
+<Title num="" text=" KEYWORDS:" />
+<div>
+    <p>Extractive summarization</p>
+    <p>Embeddings</p>
+    <p>Doc2Vec</p>
+    <p>Convolutional Neural Network</p>
+    <p>BLEU</p>
+</div>
+
+<br />
+<br />
+<br />
+
+<Title num="" text=" References" />
+
+1. Reddy, Y. Surendranadha, and AP Siva Kumar. "An efficient approach for web
+   document summarization by sentence ranking." International Journal of Advanced Research in Computer Science and Software Engineering 2.7 (2012).
+2. Prakhar Ganesh, “Automatic Text Summarization : Simplified” ,Towards Data
+   Science, Friday June 2019, https://towardsdatascience.com/automatic-textsummarization-simplified-3b7c10c4093a.
+3. Luhn, Hans Peter. "The automatic creation of literature abstracts." IBM Journal
+   of research and development 2.2 (1958): 159-165.
+4. Edmundson, Harold P. "New methods in automatic extracting." Journal of the
+   ACM (JACM) 16.2 (1969): 264-285.
+5. Rau, Lisa F., Paul S. Jacobs, and Uri Zernik. "Information extraction and text
+   summarization using linguistic knowledge acquisition." Information Processing
+   & Management 25.4 (1989): 419-428.
+6. Johnson, Todd, S. Thede, and A. Vlahov. "PARE: An Automatic Text Summarizer." First Midstates Conference for Undergraduate Research in Computer Science and Mathematics. 2003.
+7. Mihalcea, Rada. "Graph-based ranking algorithms for sentence extraction, applied to text summarization." Proceedings of the ACL Interactive Poster and
+   Demonstration Sessions. 2004.
+8. Fattah, Mohamed Abdel, and Fuji Ren. "GA, MR, FFNN, PNN and GMM based
+   models for automatic text summarization." Computer Speech & Language23.1
+   (2009): 126-144.
+9. Mendoza, Martha, et al. "Extractive single-document summarization based on
+   genetic operators and guided local search."Expert Systems with Applications41.9
+   (2014): 4158-4169.
+10. Sinha, Aakash, Abhishek Yadav, and Akshay Gahlot. "Extractive text summarization using neural networks." arXiv preprint arXiv:1802.10137(2018).
+11. AR, Mrs Kulkarni. "Text Summarization using Neural Networks and Rhetorical
+    Structure Theory.", International Journal of Advanced Research in Computer and Communication Engineering Vol. 4, Issue 6, June 2015, pp. 49-52
+12. Nallapati, Ramesh, Feifei Zhai, and Bowen Zhou. "Summarunner: A recurrent
+    neural network based sequence model for extractive summarization of documents."Thirty-First AAAI Conference on Artificial Intelligence. 2017.
+13. Lau, Jey Han, and Timothy Baldwin. "An empirical evaluation of doc2vec with
+    practical insights into document embedding generation." arXiv preprint
+    arXiv:1607.05368(2016).
+14. Mikolov, T., Chen, K., Corrado, G., Dean, J., "Efficient estimation of word representations in vector space." arXiv preprint arXiv:1301.3781 (2013).
+15. Mikolov, T., Sutskever, I., Chen, K., Corrado, G., Dean, J., "Distributed representations of words and phrases and their compositionality." Advances in neural
+    information processing systems. 2013.
+16. Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016). "6.2.2.3 Softmax
+    Units for Multinoulli Output Distributions". Deep Learning. MIT Press. ISBN .
+17. Papineni, Kishore, Salim Roukos, Todd Ward, Wei-Jing Zhu, "BLEU: a
+    method for automatic evaluation of machine translation." Proceedings of the 40th
+    annual meeting on association for computational linguistics. Association for
+    Computational Linguistics, 2002.
+18. Wikipedia contributors. (2019, December 9). World War II. In Wikipedia, The
+    Free Encyclopedia. Retrieved 07:31, December 10, 2019, from
+    https://en.wikipedia.org/w/index.php?title=World_War_II&oldid=929959693
+19. Mitter, Sohini “Sourav Ganguly: leadership lessons from his memoir”,
+    YSWEEKENDER, Friday May, 2018, https://yourstory.com/weekender/create-anew-template-for-success-sourav-ganguly.
+20. “SRI AUROBINDO AND THE MOTHER ON INDIA”, Resurgent India, Friday
+    November, 2011, http://new.resurgentindia.org/introduction/sri-aurobindo-andthe-mother-on-india/
+21. Le, Quoc, and Tomas Mikolov. "Distributed representations of sentences and
+    documents."International conference on machine learning. 2014.
+22. “Convolutional Neural Networks for Sentence Classification” Y. Kim 2014 in
+    Conference on Empirical Methods in Natural Language Processing (EMNLP’14)
+23. Viu, Danqing “A Practical Guide To ReLU”, Medium, Thursday November,
+    2017, https://medium.com/@danqing/a-practical-guide-to-relub83ca804f1f7
+24. Brownlee,Jason “Loss and Loss Functions for Training Deep Learning Neural
+    Networks.”Machine Learning Mastery, Monday January
+    2019,https://machinelearningmastery.com/loss-and-loss-functions-for-trainingdeep-learning-neural-networks/.
+25. Lloret, Elena, and Manuel Palomar. "Challenging issues of automatic summarization: relevance detection and quality-based evaluation." Informatica 34.1
+    (2010).
+26. Pan, Hazel Mae “How BLEU Measures Translation and Why It Matters”, Slator
+    language industry intelligence, Monday November, 2016,
+    https://slator.com/technology/how-bleu-measures-translation-and-why-it-matters/
